@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte ServerSmart - Desbloqueio Profissional</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;600;700;900&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Assets/logo.png.png" alt="Logo ServerSmart" class="logo-img">
+                <span>ServerSmart</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Início</a>
+                <a href="#services" class="nav-link">Serviços</a>
+                <a href="#pricing" class="nav-link">Preços</a>
+                <a href="#rental" class="nav-link">Aluguel de Ferramentas</a>
+                <a href="#remote-unlock" class="nav-link">Desbloqueios Remotos</a>
+                <a href="#contact" class="nav-link">Contato</a>
+            </div>
+            <div class="dolar-quote">
+                <div class="dolar-label">Cotação</div>
+                <div class="dolar-value-row">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span id="dolarValue">R$ --,--</span>
+                    <span class="dolar-hoje">Dólar hoje</span>
+                </div>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-particles"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text" data-aos="fade-up">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Desbloqueio</span> Profissional
+                </h1>
+                <p class="hero-subtitle">Soluções avançadas para desbloqueio de conta Google, PayJoy e MDM</p>
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>100% Seguro</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-clock"></i>
+                        <span>24h Garantia</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Suporte 24/7</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Começar Agora
+                    </a>
+                    <a href="#services" class="btn btn-secondary">
+                        <i class="fas fa-play"></i>
+                        Ver Serviços
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual" data-aos="fade-left">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="app-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="unlock-animation">
+                            <i class="fas fa-unlock-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Nossos Serviços</h2>
+                <p>Desbloqueio profissional para todas as marcas</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3>Conta Google</h3>
+                    <p>Desbloqueio de conta Google esquecida ou bloqueada</p>
+                    <ul>
+                        <li>Recuperação de senha</li>
+                        <li>Remoção de verificação</li>
+                        <li>Acesso completo</li>
+                    </ul>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>PayJoy</h3>
+                    <p>Desbloqueio de dispositivos com bloqueio PayJoy</p>
+                    <ul>
+                        <li>Remoção de bloqueio</li>
+                        <li>Liberação total</li>
+                        <li>Funcionamento normal</li>
+                    </ul>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>MDM</h3>
+                    <p>Remoção de gerenciamento de dispositivos móveis</p>
+                    <ul>
+                        <li>Remoção de políticas</li>
+                        <li>Liberação empresarial</li>
+                        <li>Uso pessoal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Remote Unlock Area Section -->
+    <section id="remote-unlock" class="remote-unlock">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Área de Desbloqueios Remotos</h2>
+                <p>Solicite desbloqueios remotos para diversos modelos e marcas, com segurança e agilidade!</p>
+            </div>
+            <div class="remote-grid">
+                <div class="remote-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Desbloqueio FRP (Conta Google)</h3>
+                    <p>Remoção de conta Google (FRP) em aparelhos Samsung, Motorola, Xiaomi e outros.</p>
+                    <div class="remote-price">A partir de <strong>R$ 40,00</strong></div>
+                    <button class="btn btn-primary remote-btn" onclick="window.open('https://wa.me/5541996378029?text=Ola%20Suporte%20Server%20Smart','_blank')">Solicitar Remoto</button>
+                </div>
+                <div class="remote-card" data-aos="fade-up" data-aos-delay="150">
+                    <h3>Desbloqueio MDM</h3>
+                    <p>Remoção de gerenciamento MDM em Samsung, Motorola, Xiaomi, iPhone e outros.</p>
+                    <div class="remote-price">A partir de <strong>R$ 60,00</strong></div>
+                    <button class="btn btn-primary remote-btn" onclick="window.open('https://wa.me/5541996378029?text=Ola%20Suporte%20Server%20Smart','_blank')">Solicitar Remoto</button>
+                </div>
+                <div class="remote-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Desbloqueio PayJoy</h3>
+                    <p>Remoção de bloqueio PayJoy em Samsung, Motorola, Xiaomi e outros modelos.</p>
+                    <div class="remote-price">A partir de <strong>R$ 50,00</strong></div>
+                    <button class="btn btn-primary remote-btn" onclick="window.open('https://wa.me/5541996378029?text=Ola%20Suporte%20Server%20Smart','_blank')">Solicitar Remoto</button>
+                </div>
+                <div class="remote-card" data-aos="fade-up" data-aos-delay="250">
+                    <h3>Desbloqueio iPhone (iCloud/MDM)</h3>
+                    <p>Desbloqueio de iCloud, MDM e ativação remota para iPhones e iPads.</p>
+                    <div class="remote-price">A partir de <strong>R$ 120,00</strong></div>
+                    <button class="btn btn-primary remote-btn" onclick="window.open('https://wa.me/5541996378029?text=Ola%20Suporte%20Server%20Smart','_blank')">Solicitar Remoto</button>
+                </div>
+                <div class="remote-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Desbloqueio Xiaomi (Mi Account)</h3>
+                    <p>Remoção de conta Mi, FRP e bloqueios em aparelhos Xiaomi.</p>
+                    <div class="remote-price">A partir de <strong>R$ 70,00</strong></div>
+                    <button class="btn btn-primary remote-btn" onclick="window.open('https://wa.me/5541996378029?text=Ola%20Suporte%20Server%20Smart','_blank')">Solicitar Remoto</button>
+                </div>
+                <div class="remote-card" data-aos="fade-up" data-aos-delay="350">
+                    <h3>Desbloqueio Samsung (Remoto)</h3>
+                    <p>Desbloqueio de conta Google, MDM, PayJoy e outros em Samsung via acesso remoto.</p>
+                    <div class="remote-price">A partir de <strong>R$ 50,00</strong></div>
+                    <button class="btn btn-primary remote-btn" onclick="window.open('https://wa.me/5541996378029?text=Ola%20Suporte%20Server%20Smart','_blank')">Solicitar Remoto</button>
+                </div>
+                <div class="remote-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Desbloqueio Motorola (Remoto)</h3>
+                    <p>Desbloqueio de FRP, MDM, PayJoy e outros em Motorola via acesso remoto.</p>
+                    <div class="remote-price">A partir de <strong>R$ 50,00</strong></div>
+                    <button class="btn btn-primary remote-btn" onclick="window.open('https://wa.me/5541996378029?text=Ola%20Suporte%20Server%20Smart','_blank')">Solicitar Remoto</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rental Tools Section -->
+    <section id="rental" class="rental-tools">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Aluguel de Ferramentas de Desbloqueio</h2>
+                <p>Alugue as melhores ferramentas profissionais para desbloqueio de celulares!</p>
+            </div>
+            <div class="aluguel-form-container">
+                <form id="formularioAluguel" class="modern-form">
+                    <div class="form-group">
+                        <label for="nome_aluguel"><i class="fas fa-user"></i> Nome Completo</label>
+                        <input type="text" id="nome_aluguel" name="nome_aluguel" required placeholder="Digite seu nome completo">
+                        <div class="form-validation"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp_aluguel"><i class="fab fa-whatsapp"></i> WhatsApp</label>
+                        <input type="tel" id="whatsapp_aluguel" name="whatsapp_aluguel" required placeholder="(11) 99999-9999">
+                        <div class="form-validation"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ferramenta_aluguel"><i class="fas fa-toolbox"></i> Ferramenta</label>
+                        <select name="ferramenta_aluguel" id="ferramenta_aluguel" required>
+                            <option value="">Selecione a ferramenta</option>
+                            <option value="Octoplus Box">Octoplus Box</option>
+                            <option value="Chimera Tool">Chimera Tool</option>
+                            <option value="Z3X Box">Z3X Box</option>
+                            <option value="Sigma Key">Sigma Key</option>
+                            <option value="EFT Pro Dongle">EFT Pro Dongle</option>
+                            <option value="Pandora Box">Pandora Box</option>
+                            <option value="Hydra Tool">Hydra Tool</option>
+                            <option value="UnlockTool">UnlockTool</option>
+                            <option value="MRT Dongle">MRT Dongle</option>
+                            <option value="UMT Dongle">UMT Dongle</option>
+                            <option value="Medusa Pro Box">Medusa Pro Box</option>
+                            <option value="Infinity-Box">Infinity-Box</option>
+                            <option value="GCPro Key">GCPro Key</option>
+                            <option value="NCK Pro Box">NCK Pro Box</option>
+                            <option value="TFM Tool Pro">TFM Tool Pro</option>
+                            <option value="EFT Dongle">EFT Dongle</option>
+                            <option value="Sigma Plus">Sigma Plus</option>
+                            <option value="FuriousGold">FuriousGold</option>
+                            <option value="BST Dongle">BST Dongle</option>
+                        </select>
+                        <div class="form-validation"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo_bloqueio_aluguel"><i class="fas fa-lock"></i> Tipo de Bloqueio</label>
+                        <select name="tipo_bloqueio_aluguel" id="tipo_bloqueio_aluguel" required>
+                            <option value="">Selecione o tipo de bloqueio</option>
+                            <option value="Conta Google/FRP">Conta Google/FRP</option>
+                            <option value="MDM">MDM</option>
+                            <option value="PayJoy">PayJoy</option>
+                            <option value="Mi Account">Mi Account</option>
+                            <option value="iCloud">iCloud</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                        <div class="form-validation"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="anydesk_aluguel"><i class="fas fa-desktop"></i> ID AnyDesk</label>
+                        <input type="text" id="anydesk_aluguel" name="anydesk_aluguel" required placeholder="Digite o ID AnyDesk">
+                        <div class="form-validation"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="valor_aluguel"><i class="fas fa-money-bill-wave"></i> Valor do Aluguel</label>
+                        <input type="text" id="valor_aluguel" name="valor_aluguel" readonly>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="btnGerarPix"><i class="fas fa-qrcode"></i> Gerar QR Code PIX</button>
+                    <div id="pixQrArea" style="margin: 20px 0; text-align: center;"></div>
+                    <button type="button" class="btn btn-primary" id="btnEnviarAluguel"><i class="fab fa-whatsapp"></i> Enviar Pedido</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <h2>Solicitar Desbloqueio</h2>
+                    <p>Preencha os dados abaixo para iniciar seu pedido</p>
+                    <div class="contact-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Dispositivos Desbloqueados</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99%</div>
+                            <div class="stat-label">Taxa de Sucesso</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24h</div>
+                            <div class="stat-label">Tempo Médio</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-container" data-aos="fade-left">
+                    <form id="formularioPedido" class="modern-form">
+                        <div class="form-group">
+                            <label for="nome">
+                                <i class="fas fa-user"></i> Nome Completo
+                            </label>
+                            <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+                            <div class="form-validation"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </label>
+                            <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(11) 99999-9999">
+                            <div class="form-validation"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipo_bloqueio">
+                                <i class="fas fa-lock"></i> Tipo de Bloqueio
+                            </label>
+                            <select name="tipo_bloqueio" id="tipo_bloqueio" required>
+                                <option value="">Selecione o tipo de bloqueio</option>
+                                <option value="Conta Google/FRP">Conta Google/FRP</option>
+                                <option value="MDM">MDM</option>
+                                <option value="PayJoy">PayJoy</option>
+                                <option value="Mi Account">Mi Account</option>
+                                <option value="iCloud">iCloud</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                            <div class="form-validation"></div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="marcaSelect">
+                                    <i class="fas fa-mobile-alt"></i> Marca
+                                </label>
+                                <select name="marca" id="marcaSelect" required>
+                                    <option value="">Selecione a marca</option>
+                                    <option value="Samsung">Samsung</option>
+                                    <option value="Motorola">Motorola</option>
+                                </select>
+                                <div class="form-validation"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="modeloSelect">
+                                    <i class="fas fa-cog"></i> Modelo
+                                </label>
+                                <select name="modelo" id="modeloSelect" required>
+                                    <option value="">Selecione o modelo</option>
+                                </select>
+                                <div class="form-validation"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="imei_sn">
+                                <i class="fas fa-barcode"></i> IMEI ou SN
+                            </label>
+                            <input type="text" id="imei_sn" name="imei_sn" required placeholder="Digite o IMEI ou SN do dispositivo">
+                            <div class="form-validation"></div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Pedido
+                            <div class="btn-loading"></div>
+                        </button>
+                    </form>
+
+                    <div id="resposta" class="response-message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>O que nossos clientes dizem</h2>
+                <p>Depoimentos de quem já utilizou nossos serviços</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-content">
+                        <p>"Serviço incrível! Desbloqueou meu Samsung em menos de 24h. Recomendo!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>João Silva</h4>
+                            <span>Samsung A52</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        <p>"Profissionais e rápidos. Resolveram meu problema com PayJoy sem complicações."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Maria Santos</h4>
+                            <span>Motorola G60</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-content">
+                        <p>"Melhor investimento que fiz! Agora posso usar meu celular normalmente."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Pedro Costa</h4>
+                            <span>Samsung S21</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Perguntas Frequentes</h2>
+                <p>Tire suas dúvidas sobre nossos serviços</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>O processo é seguro?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim, nosso processo é 100% seguro. Utilizamos métodos profissionais e não comprometemos a integridade do seu dispositivo.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Quanto tempo leva o desbloqueio?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O tempo médio é de 24 horas, mas pode variar dependendo da complexidade do caso. Mantemos você informado durante todo o processo.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Vocês dão garantia?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim, oferecemos garantia total. Se por algum motivo o desbloqueio não funcionar, devolvemos seu dinheiro.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="Assets/logo.png.png" alt="Logo ServerSmart" class="logo-img">
+                        <span>ServerSmart</span>
+                    </div>
+                    <p>Desbloqueio profissional e seguro para todos os dispositivos.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Serviços</h3>
+                    <ul>
+                        <li><a href="#">Desbloqueio Google</a></li>
+                        <li><a href="#">Remoção PayJoy</a></li>
+                        <li><a href="#">Remoção MDM</a></li>
+                        <li><a href="#">Suporte Técnico</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>suporteserversmart@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>(41) 99637-8029</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Suporte ServerSmart. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
