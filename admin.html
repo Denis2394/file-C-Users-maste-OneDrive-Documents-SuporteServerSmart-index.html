@@ -1,0 +1,250 @@
+sim <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - GSM SUPORTE BRASIL</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <img src="Assets/logo.png" alt="Logo" class="logo">
+                <span class="admin-title">admin</span>
+            </div>
+            <ul class="menu">
+                <li class="menu-item active" data-section="home"><i class="fa fa-home"></i> Página inicial</li>
+                <li class="menu-item" data-section="imei"><i class="fa fa-file-alt"></i> Adicionar IMEI</li>
+                <li class="menu-item has-submenu" data-section="servidor"><i class="fa fa-server"></i> Adicionar Servidor
+                    <ul class="submenu">
+                        <li class="submenu-item" data-section="cadastrar-servidor">Cadastrar Servidor</li>
+                        <li class="submenu-item" data-section="listar-servidores">Listar Servidores</li>
+                    </ul>
+                </li>
+                <li class="menu-item has-submenu" data-section="remotos"><i class="fa fa-network-wired"></i> Adicionar Remotos
+                    <ul class="submenu">
+                        <li class="submenu-item" data-section="cadastrar-remoto">Cadastrar Remoto</li>
+                        <li class="submenu-item" data-section="listar-remotos">Listar Remotos</li>
+                    </ul>
+                </li>
+                <li class="menu-item has-submenu" data-section="gsm"><i class="fa fa-mobile-alt"></i> Serviços GSM
+                    <ul class="submenu">
+                        <li class="submenu-item" data-section="cadastrar-gsm">Cadastrar Serviço GSM</li>
+                        <li class="submenu-item" data-section="listar-gsm">Listar Serviços GSM</li>
+                    </ul>
+                </li>
+                <li class="menu-item has-submenu" data-section="api"><i class="fa fa-sync"></i> Atualizar API
+                    <ul class="submenu">
+                        <li class="submenu-item" data-section="atualizar-grupo">Atualizar Grupo</li>
+                        <li class="submenu-item" data-section="atualizar-servico">Atualizar Serviço</li>
+                    </ul>
+                </li>
+                <li class="menu-item has-submenu" data-section="revendas"><i class="fa fa-store"></i> Revendas
+                    <ul class="submenu">
+                        <li class="submenu-item" data-section="cadastrar-revenda">Cadastrar Revenda</li>
+                        <li class="submenu-item" data-section="listar-revendas">Listar Revendas</li>
+                    </ul>
+                </li>
+                <li class="menu-item" data-section="aviso"><i class="fa fa-bullhorn"></i> Aviso
+                    <ul class="submenu">
+                        <li class="submenu-item" data-section="gerenciar-avisos">Gerenciar Avisos</li>
+                    </ul>
+                </li>
+                <li class="menu-item" data-section="pedidos-servicos"><i class="fa fa-clipboard-list"></i> Pedidos de Serviços <span id="badge-pedidos" style="display:none;margin-left:8px;background:#e53935;color:#fff;font-size:0.95em;font-weight:bold;padding:2px 8px;border-radius:12px;vertical-align:middle;"></span></li>
+                <li class="menu-item" data-section="sair"><i class="fa fa-sign-out-alt"></i> Sair</li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <section id="home" class="section active">
+                <h2><i class="fa fa-home"></i> Página inicial</h2>
+                <div class="dashboard-widgets">
+                    <div class="widget widget-blue">
+                        <div class="widget-title">Bem-vindo(a) à área de gerenciamento</div>
+                        <div class="widget-desc">painel administrativo (GSM SUPORTE BRASIL).</div>
+                    </div>
+                    <div class="widget widget-cyan">
+                        <div class="widget-title">Valor Total de Recargas dos Usuários</div>
+                        <div class="widget-value">R$ 0,00</div>
+                    </div>
+                    <div class="widget widget-yellow">
+                        <div class="widget-title">Total de Usuários Cadastrados</div>
+                        <div class="widget-value" id="total-usuarios">0</div>
+                    </div>
+                    <div class="widget widget-green">
+                        <div class="widget-title">Total de Usuários Online</div>
+                        <div class="widget-value" id="total-online">0</div>
+                        <ul id="lista-online" style="margin: 10px 0 0 0; padding-left: 18px; font-size: 0.98em;"></ul>
+                    </div>
+                </div>
+            </section>
+            <section id="imei" class="section">
+                <h2>Adicionar IMEI</h2>
+                <!-- Formulário de IMEI aqui -->
+            </section>
+            <section id="cadastrar-servidor" class="section">
+                <h2>Cadastrar Servidor</h2>
+                <form id="form-servidor">
+                    <label for="nome-servidor">Nome do Servidor:</label>
+                    <input type="text" id="nome-servidor" required>
+                    <label for="endereco-servidor">Endereço/IP:</label>
+                    <input type="text" id="endereco-servidor" required>
+                    <label for="obs-servidor">Observação:</label>
+                    <input type="text" id="obs-servidor">
+                    <button type="submit">Cadastrar Servidor</button>
+                </form>
+            </section>
+            <section id="listar-servidores" class="section">
+                <h2>Listar Servidores</h2>
+                <table id="tabela-servidores">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Endereço/IP</th>
+                            <th>Observação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Servidores serão inseridos aqui -->
+                    </tbody>
+                </table>
+            </section>
+            <section id="cadastrar-remoto" class="section">
+                <h2>Gerenciamento de Serviços</h2>
+                <form id="form-servico-remoto">
+                    <label for="nome-servico-remoto">Nome do Serviço:</label>
+                    <input type="text" id="nome-servico-remoto" required>
+                    <label for="valor-servico-remoto">Valor do Serviço:</label>
+                    <input type="number" id="valor-servico-remoto" required min="0" step="0.01">
+                    <button type="submit">Adicionar Serviço</button>
+                </form>
+                <h3>Serviços Cadastrados</h3>
+                <table id="tabela-servicos-remoto">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Serviços serão inseridos aqui -->
+                    </tbody>
+                </table>
+            </section>
+            <section id="listar-remotos" class="section">
+                <h2>Listar Remotos</h2>
+                <!-- Tabela de remotos -->
+            </section>
+            <section id="cadastrar-gsm" class="section">
+                <h2>Gerenciamento de Serviços GSM</h2>
+                <form id="form-servico-gsm">
+                    <label for="nome-servico-gsm">Nome do Serviço GSM:</label>
+                    <input type="text" id="nome-servico-gsm" required>
+                    <label for="valor-servico-gsm">Valor do Serviço:</label>
+                    <input type="number" id="valor-servico-gsm" required min="0" step="0.01">
+                    <button type="submit">Adicionar Serviço GSM</button>
+                </form>
+                <h3>Serviços GSM Cadastrados</h3>
+                <table id="tabela-servicos-gsm">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Serviços GSM serão inseridos aqui -->
+                    </tbody>
+                </table>
+            </section>
+            <section id="listar-gsm" class="section">
+                <h2>Listar Serviços GSM</h2>
+                <!-- Tabela de serviços GSM -->
+            </section>
+            <section id="atualizar-grupo" class="section">
+                <h2>Atualizar Grupo</h2>
+                <!-- Formulário de atualização de grupo -->
+            </section>
+            <section id="atualizar-servico" class="section">
+                <h2>Atualizar Serviço</h2>
+                <!-- Formulário de atualização de serviço -->
+            </section>
+            <section id="cadastrar-revenda" class="section">
+                <h2>Gerenciamento de Revendas</h2>
+                <form id="form-revenda">
+                    <label for="nome-revenda">Nome da Revenda:</label>
+                    <input type="text" id="nome-revenda" required>
+                    <label for="contato-revenda">Contato:</label>
+                    <input type="text" id="contato-revenda" required>
+                    <label for="obs-revenda">Observação:</label>
+                    <input type="text" id="obs-revenda">
+                    <button type="submit">Adicionar Revenda</button>
+                </form>
+                <h3>Revendas Cadastradas</h3>
+                <table id="tabela-revendas">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Contato</th>
+                            <th>Observação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Revendas serão inseridas aqui -->
+                    </tbody>
+                </table>
+            </section>
+            <section id="listar-revendas" class="section">
+                <h2>Listar Revendas</h2>
+                <!-- Tabela de revendas -->
+            </section>
+            <section id="gerenciar-avisos" class="section">
+                <h2>Gerenciar Avisos</h2>
+                <form id="form-aviso">
+                    <label for="texto-aviso">Novo Aviso:</label>
+                    <input type="text" id="texto-aviso" required style="width:100%;padding:10px;margin-bottom:10px;">
+                    <button type="submit" style="background:#1976d2;color:#fff;padding:10px 24px;border:none;border-radius:5px;font-size:1.08em;cursor:pointer;">Adicionar Aviso</button>
+                </form>
+                <h3 style="margin-top:28px;">Avisos Cadastrados</h3>
+                <ul id="lista-avisos" style="margin-top:10px;padding-left:18px;"></ul>
+            </section>
+            <section id="pedidos-servicos" class="section">
+                <h2>Pedidos de Serviços</h2>
+                <input type="text" id="busca-pedidos" placeholder="Buscar por nome, serviço ou data..." style="width:320px;max-width:100%;margin-bottom:16px;padding:8px 12px;border-radius:5px;border:1.2px solid #b0bec5;font-size:1em;">
+                <table id="tabela-pedidos-servicos" style="width:100%;margin-top:8px;">
+                    <thead>
+                        <tr>
+                            <th>Código do Pedido</th>
+                            <th>Data</th>
+                            <th>Serviço</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
+                            <th>Observação</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Pedidos serão inseridos aqui -->
+                    </tbody>
+                </table>
+            </section>
+            <section id="sair" class="section">
+                <h2>Sair</h2>
+                <!-- Lógica de logout -->
+            </section>
+        </main>
+    </div>
+    <audio id="audio-notificacao" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae5c7.mp3" preload="auto" style="display:none;"></audio>
+    <script src="admin.js"></script>
+</body>
+</html> 

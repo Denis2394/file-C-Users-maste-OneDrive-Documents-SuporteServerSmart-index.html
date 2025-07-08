@@ -1,0 +1,150 @@
+{
+  "bot": {
+    "nome": "Server Smart Bot",
+    "numero": "5541996378029",
+    "mensagem_boas_vindas": "🤖 Olá! Sou o assistente virtual do Server Smart. Como posso ajudá-lo hoje?",
+    "ativo": true
+  },
+  "formularios": {
+    "suporte": {
+      "titulo": "Formulário de Suporte",
+      "campos": [
+        {
+          "nome": "nome",
+          "label": "Nome completo",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "whatsapp",
+          "label": "WhatsApp",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "anydesk",
+          "label": "Anydesk",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "modelo",
+          "label": "Modelo do dispositivo",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "descricao",
+          "label": "Descreva o problema ou dúvida",
+          "tipo": "texto_longo",
+          "obrigatorio": true
+        }
+      ]
+    },
+    "pedido": {
+      "titulo": "Formulário de Pedido",
+      "campos": [
+        {
+          "nome": "nome",
+          "label": "Nome completo",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "whatsapp",
+          "label": "WhatsApp",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "anydesk",
+          "label": "Anydesk",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "modelo",
+          "label": "Modelo do dispositivo",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "servico",
+          "label": "Qual serviço você deseja? (GSM, Remoto, Ferramenta)",
+          "tipo": "texto",
+          "obrigatorio": true
+        }
+      ]
+    },
+    "problema": {
+      "titulo": "Reportar Problema",
+      "campos": [
+        {
+          "nome": "nome",
+          "label": "Nome completo",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "whatsapp",
+          "label": "WhatsApp",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "anydesk",
+          "label": "Anydesk",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "modelo",
+          "label": "Modelo do dispositivo",
+          "tipo": "texto",
+          "obrigatorio": true
+        },
+        {
+          "nome": "descricao",
+          "label": "Descreva o problema detalhadamente",
+          "tipo": "texto_longo",
+          "obrigatorio": true
+        }
+      ]
+    }
+  },
+  "menu": {
+    "opcoes": [
+      {
+        "numero": "1",
+        "titulo": "Formulário de Suporte",
+        "descricao": "Solicitar suporte técnico, reportar problemas, dúvidas sobre serviços"
+      },
+      {
+        "numero": "2",
+        "titulo": "Fazer Pedido",
+        "descricao": "Solicitar serviços GSM, pedir remotos, alugar ferramentas"
+      },
+      {
+        "numero": "3",
+        "titulo": "Reportar Problema",
+        "descricao": "Problemas com serviços, bugs ou erros, reclamações"
+      },
+      {
+        "numero": "4",
+        "titulo": "Falar com Humano",
+        "descricao": "Atendimento personalizado, emergências"
+      }
+    ]
+  },
+  "admin": {
+    "webhook_url": "https://seu-painel-admin.com/api/webhook",
+    "notificacoes_email": "admin@serversmart.com",
+    "tempo_atendimento_humano": "10 minutos"
+  },
+  "respostas": {
+    "menu_principal": "🤖 *SUPORTE SERVER SMART*\n\nOlá! Sou o assistente virtual do Server Smart. Como posso ajudá-lo hoje?\n\n*Escolha uma opção:*\n\n1️⃣ *Formulário de Suporte*\n   - Solicitar suporte técnico\n   - Reportar problemas\n   - Dúvidas sobre serviços\n\n2️⃣ *Fazer Pedido*\n   - Solicitar serviços GSM\n   - Pedir remotos\n   - Alugar ferramentas\n\n3️⃣ *Reportar Problema*\n   - Problemas com serviços\n   - Bugs ou erros\n   - Reclamações\n\n4️⃣ *Falar com Humano*\n   - Atendimento personalizado\n   - Emergências\n\n*Digite o número da opção desejada*",
+    "atendimento_humano": "👨‍💼 *ATENDIMENTO HUMANO*\n\nVocê será direcionado para um atendente humano em breve.\n\n*Enquanto isso, você pode:*\n- Descrever brevemente seu problema\n- Informar se é urgente\n- Deixar seu horário preferido\n\n*Um atendente entrará em contato em até 10 minutos.*",
+    "formulario_concluido": "✅ *FORMULÁRIO CONCLUÍDO!*\n\n*Dados coletados:*\n👤 Nome: {nome}\n📱 WhatsApp: {whatsapp}\n💻 Anydesk: {anydesk}\n📱 Modelo: {modelo}\n📝 Descrição: {descricao}\n\n*Seu formulário foi enviado para nossa equipe!*\nEm breve entraremos em contato.\n\n*Obrigado por escolher Server Smart!* 🚀",
+    "nao_entendi": "🤖 Desculpe, não entendi. Digite \"oi\" para ver o menu de opções."
+  }
+} 

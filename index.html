@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte Server Smart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Área de Login -->
+    <div class="login-bg">
+        <div class="login-card">
+            <div class="login-logo-area">
+                <span class="login-logo-text">SUPORTE<br><span>SERVER SMART</span></span>
+            </div>
+            <form class="login-form">
+                <div class="input-group-login">
+                    <span class="input-icon"><svg width="18" height="18" fill="#888"><path d="M9 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-6 1.34-6 3v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2c0-1.66-2.7-3-6-3z"/></svg></span>
+                    <input type="text" placeholder="Usuario" required>
+                </div>
+                <div class="input-group-login">
+                    <span class="input-icon"><svg width="18" height="18" fill="#888"><path d="M12 8V6a3 3 0 0 0-6 0v2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2zm-6 0V6a4 4 0 0 1 8 0v2a4 4 0 0 1-8 0z"/></svg></span>
+                    <input type="password" placeholder="Senha" required>
+            </div>
+                <button type="submit" class="btn-login">Entrar</button>
+                <button type="button" class="btn-outline-login">Inscrever-se</button>
+                <button type="button" class="btn-outline-login">Esqueci a senha</button>
+        </form>
+        </div>
+    </div>
+    <!-- Modal Cadastro -->
+    <div class="login-bg" id="cadastro-modal" style="display:none;">
+        <div class="login-card">
+            <div class="login-logo-area">
+                <span class="login-logo-text">SUPORTE<br><span>SERVER SMART</span></span>
+            </div>
+            <form class="login-form" id="form-cadastro">
+                <div class="input-group-login">
+                    <span class="input-icon"><svg width="18" height="18" fill="#888"><path d="M9 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-6 1.34-6 3v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2c0-1.66-2.7-3-6-3z"/></svg></span>
+                    <input type="text" placeholder="Novo usuário" id="cadastro-usuario" required>
+            </div>
+                <div class="input-group-login">
+                    <span class="input-icon"><svg width="18" height="18" fill="#888"><path d="M12 8V6a3 3 0 0 0-6 0v2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2zm-6 0V6a4 4 0 0 1 8 0v2a4 4 0 0 1-8 0z"/></svg></span>
+                    <input type="password" placeholder="Nova senha" id="cadastro-senha" required>
+            </div>
+                <button type="submit" class="btn-login">Cadastrar</button>
+                <button type="button" class="btn-outline-login" id="voltar-login">Voltar</button>
+                <div id="cadastro-msg" style="color:#b30000;text-align:center;margin-top:8px;"></div>
+            </form>
+            </div>
+    </div>
+    <!-- Modal Recuperação -->
+    <div class="login-bg" id="recupera-modal" style="display:none;">
+        <div class="login-card">
+            <div class="login-logo-area">
+                <span class="login-logo-text">SUPORTE<br><span>SERVER SMART</span></span>
+            </div>
+            <form class="login-form" id="form-recupera">
+                <div class="input-group-login">
+                    <span class="input-icon"><svg width="18" height="18" fill="#888"><path d="M9 9a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-3.3 0-6 1.34-6 3v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-2c0-1.66-2.7-3-6-3z"/></svg></span>
+                    <input type="text" placeholder="Usuário cadastrado" id="recupera-usuario" required>
+                </div>
+                <button type="submit" class="btn-login">Recuperar senha</button>
+                <button type="button" class="btn-outline-login" id="voltar-login2">Voltar</button>
+                <div id="recupera-msg" style="color:#1e90ff;text-align:center;margin-top:8px;"></div>
+        </form>
+        </div>
+    </div>
+    <!-- Conteúdo organizado em cards centralizados -->
+    <div id="site-content" style="display:none;">
+        <div class="top-bar-azul">
+            <div class="marquee-modern">
+                <span>Remoção de conta Samsung FRP (mundial brasil) CONTA MI XIAOMI DEFINITIVO (MUNDIAL) FRPFILE Ramdisk - [Desabilitar senha] - [iOS-15 16] FRPFILE Ramdisk - [Olá] - [iOS-15 16]</span>
+            </div>
+        </div>
+        <!-- Área de Avisos Públicos -->
+        <div id="avisos-publicos" style="background:#fff3cd;color:#856404;padding:14px 24px;font-size:1.08em;border-bottom:1.5px solid #ffe082;display:none;"></div>
+        <div id="avisos-publico"></div>
+        <div id="servidor-destaque-publico"></div>
+        <!-- Menu preto -->
+        <nav class="menu-preto">
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Sair</a></li>
+                </ul>
+            </nav>
+        <!-- Título central -->
+        <h1 class="titulo-site">SUPORTE SERVER SMART</h1>
+        <div style="max-width:1200px;margin:0 auto 32px auto;">
+            <h2 style="text-align:center;color:#64b5f6;margin-bottom:24px;">⚡ Arquivos Motorola Disponíveis</h2>
+            <!-- Removido: cards-servicos-publico, cards-remotos-publico, area-servicos-remotos, ou outras seções antigas de serviços -->
+        </div>
+        <!-- Seção de Todos os Serviços -->
+        <div id="area-todos-servicos" class="todos-servicos-section"></div>
+        <!-- Área de Acompanhamento de Pedido -->
+        <div id="area-acompanhar-pedido" style="max-width:400px;margin:40px auto 0 auto;padding:24px 28px;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+            <h2 style="color:#1976d2;font-size:1.18em;margin-bottom:16px;">Acompanhe seu Pedido</h2>
+            <form id="form-acompanhar-pedido">
+                <label for="codigo-pedido" style="font-weight:bold;color:#1976d2;">Código do Pedido:</label>
+                <input type="text" id="codigo-pedido" required style="width:100%;padding:8px;margin-bottom:12px;border-radius:5px;border:1.2px solid #b0bec5;">
+                <button type="submit" style="background:#1976d2;color:#fff;padding:10px 24px;border:none;border-radius:5px;font-size:1.08em;cursor:pointer;">Consultar</button>
+            </form>
+            <div id="resultado-pedido" style="margin-top:18px;"></div>
+        </div>
+        <!-- Formulário de Cadastro/Login -->
+        <div id="area-cadastro-login" style="max-width:400px;margin:40px auto 0 auto;padding:24px 28px;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+            <h2 style="color:#1976d2;">Cadastro / Login</h2>
+            <form id="form-cadastro">
+                <label for="nome-cad" style="font-weight:bold;color:#1976d2;">Nome:</label>
+                <input type="text" id="nome-cad" required style="width:100%;padding:8px;margin-bottom:8px;border-radius:5px;border:1.2px solid #b0bec5;">
+                <label for="email-cad" style="font-weight:bold;color:#1976d2;">E-mail:</label>
+                <input type="email" id="email-cad" required style="width:100%;padding:8px;margin-bottom:8px;border-radius:5px;border:1.2px solid #b0bec5;">
+                <label for="senha-cad" style="font-weight:bold;color:#1976d2;">Senha:</label>
+                <input type="password" id="senha-cad" required style="width:100%;padding:8px;margin-bottom:12px;border-radius:5px;border:1.2px solid #b0bec5;">
+                <button type="submit" style="background:#1976d2;color:#fff;padding:10px 24px;border:none;border-radius:5px;font-size:1.08em;cursor:pointer;width:100%;">Cadastrar</button>
+            </form>
+            <hr style="margin:18px 0;">
+            <form id="form-login">
+                <label for="email-login" style="font-weight:bold;color:#1976d2;">E-mail:</label>
+                <input type="email" id="email-login" required style="width:100%;padding:8px;margin-bottom:8px;border-radius:5px;border:1.2px solid #b0bec5;">
+                <label for="senha-login" style="font-weight:bold;color:#1976d2;">Senha:</label>
+                <input type="password" id="senha-login" required style="width:100%;padding:8px;margin-bottom:12px;border-radius:5px;border:1.2px solid #b0bec5;">
+                <button type="submit" style="background:#1976d2;color:#fff;padding:10px 24px;border:none;border-radius:5px;font-size:1.08em;cursor:pointer;width:100%;">Entrar</button>
+            </form>
+            <div id="msg-cadastro-login" style="margin-top:18px;font-weight:bold;"></div>
+        </div>
+
+
+                </div>
+    <!-- Botão WhatsApp Flutuante -->
+    <div id="whatsapp-suporte" style="position:fixed;bottom:30px;right:30px;z-index:1000;display:none;">
+        <a href="#" onclick="ativarBotWhatsApp(); return false;" style="display:flex;align-items:center;justify-content:center;width:60px;height:60px;background:#25D366;border-radius:50%;box-shadow:0 4px 20px rgba(37, 211, 102, 0.4);transition:all 0.3s ease;text-decoration:none;">
+            <svg width="32" height="32" fill="#fff" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+            </svg>
+        </a>
+                </div>
+    <!-- Modal de pedido -->
+    <div id="modal-pedido" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.45);z-index:9999;align-items:center;justify-content:center;">
+        <form id="form-pedido" style="background:#fff;padding:32px 28px 24px 28px;border-radius:18px;box-shadow:0 8px 32px #0005;max-width:350px;width:95vw;display:flex;flex-direction:column;gap:16px;position:relative;">
+            <h3 style="color:#1e90ff;text-align:center;margin-bottom:8px;">Fazer Pedido</h3>
+            <input type="text" id="pedido-nome" placeholder="Seu nome" required style="padding:10px;border-radius:8px;border:1px solid #e0e6ef;">
+            <input type="text" id="pedido-whatsapp" placeholder="WhatsApp" required style="padding:10px;border-radius:8px;border:1px solid #e0e6ef;">
+            <input type="text" id="pedido-anydesk" placeholder="Anydesk" required style="padding:10px;border-radius:8px;border:1px solid #e0e6ef;">
+            <input type="text" id="pedido-modelo" placeholder="Modelo do dispositivo" required style="padding:10px;border-radius:8px;border:1px solid #e0e6ef;">
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:8px;">
+                <button type="submit" style="background:#1e90ff;color:#fff;padding:10px 24px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">Confirmar</button>
+                <button type="button" id="cancelar-pedido" style="background:#eee;color:#1e90ff;padding:10px 24px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Modal de Solicitação de Serviço -->
+    <div id="modal-solicitar-servico" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.32);z-index:1000;align-items:center;justify-content:center;">
+      <div style="background:#fff;border-radius:12px;max-width:370px;width:95vw;padding:32px 22px 22px 22px;box-shadow:0 8px 32px rgba(25,118,210,0.18);position:relative;">
+        <button id="fechar-modal-servico" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.5em;color:#1976d2;cursor:pointer;">&times;</button>
+        <h3 style="color:#1976d2;margin-bottom:18px;">Solicitar Serviço</h3>
+        <form id="form-solicitar-servico">
+          <input type="hidden" id="servico-nome-modal">
+          <div style="margin-bottom:10px;font-weight:bold;">Serviço: <span id="servico-nome-exibir"></span></div>
+          <label for="nome-solicitante" style="font-weight:bold;">Seu nome:</label>
+          <input type="text" id="nome-solicitante" required style="width:100%;padding:8px;margin-bottom:8px;border-radius:5px;border:1.2px solid #b0bec5;">
+          <label for="email-solicitante" style="font-weight:bold;">E-mail:</label>
+          <input type="email" id="email-solicitante" required style="width:100%;padding:8px;margin-bottom:8px;border-radius:5px;border:1.2px solid #b0bec5;">
+          <label for="tel-solicitante" style="font-weight:bold;">Telefone:</label>
+          <input type="tel" id="tel-solicitante" required style="width:100%;padding:8px;margin-bottom:8px;border-radius:5px;border:1.2px solid #b0bec5;">
+          <label for="obs-solicitante" style="font-weight:bold;">Observação:</label>
+          <textarea id="obs-solicitante" rows="2" style="width:100%;padding:8px;margin-bottom:12px;border-radius:5px;border:1.2px solid #b0bec5;"></textarea>
+          <button type="submit" style="background:#1976d2;color:#fff;padding:10px 24px;border:none;border-radius:5px;font-size:1.08em;cursor:pointer;width:100%;font-weight:bold;">Enviar Pedido</button>
+        </form>
+        <div id="msg-pedido-sucesso" style="color:#43a047;font-weight:bold;margin-top:12px;display:none;text-align:center;">Pedido enviado com sucesso!</div>
+      </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <!-- Botão flutuante para abrir a lateral de pedidos -->
+    <button id="abrir-lateral-pedidos" style="position:fixed;top:120px;right:30px;z-index:1001;background:#1976d2;color:#fff;border:none;border-radius:50%;width:56px;height:56px;box-shadow:0 4px 20px #1976d255;display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;">
+      <i class="fa-solid fa-list"></i>
+    </button>
+    <!-- Barra lateral de pedidos de aluguel -->
+    <div id="lateral-pedidos" style="position:fixed;top:0;right:-420px;width:380px;max-width:95vw;height:100vh;background:rgba(30,41,59,0.97);box-shadow:-4px 0 32px #0005;z-index:1002;transition:right 0.3s;border-radius:18px 0 0 18px;padding:32px 18px 18px 18px;overflow-y:auto;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+        <h2 style="color:#64b5f6;font-size:1.3rem;margin:0;">Pedidos de Aluguel</h2>
+        <button id="fechar-lateral-pedidos" style="background:none;border:none;color:#fff;font-size:1.7rem;cursor:pointer;">&times;</button>
+      </div>
+      <div id="lista-pedidos-lateral"></div>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script>
+    // Abrir/fechar lateral
+    const btnAbrir = document.getElementById('abrir-lateral-pedidos');
+    const lateral = document.getElementById('lateral-pedidos');
+    const btnFechar = document.getElementById('fechar-lateral-pedidos');
+    btnAbrir.onclick = () => { lateral.style.right = '0'; renderPedidosLateral(); };
+    btnFechar.onclick = () => { lateral.style.right = '-420px'; };
+    // Renderizar pedidos na lateral
+    function renderPedidosLateral() {
+      const pedidos = JSON.parse(localStorage.getItem('pedidosAluguel') || '[]');
+      let html = '';
+      if (pedidos.length === 0) {
+        html = '<div style="color:#f87171;text-align:center;">Nenhum pedido de aluguel encontrado.</div>';
+      } else {
+        pedidos.slice().reverse().forEach(p => {
+          html += `<div style='background:rgba(59,130,246,0.13);border-radius:12px;padding:16px 12px;margin-bottom:16px;'>
+            <b>Nome:</b> ${p.cliente}<br>
+            <b>Ferramenta:</b> ${p.ferramenta}<br>
+            <b>Data:</b> ${p.data}<br>
+            <b>Status:</b> ${p.status}<br>`;
+          if (p.loginAcesso && p.senhaAcesso) {
+            html += `<div style='margin-top:10px;padding:10px 8px;background:rgba(16,185,129,0.13);border-radius:8px;'>
+              <b>Login:</b> <span style='color:#22d3ee;'>${p.loginAcesso}</span><br>
+              <b>Senha:</b> <span style='color:#facc15;'>${p.senhaAcesso}</span>
+            </div>`;
+          }
+          html += '</div>';
+        });
+      }
+      document.getElementById('lista-pedidos-lateral').innerHTML = html;
+    }
+    </script>
+    <!-- Área exclusiva do cliente -->
+    <div id="area-cliente" style="display:none;max-width:400px;margin:40px auto 0 auto;padding:24px 28px;background:#e3f2fd;border-radius:10px;box-shadow:0 2px 12px rgba(25,118,210,0.08);text-align:center;">
+        <h2 style="color:#1976d2;">Área do Cliente</h2>
+        <div id="boas-vindas-cliente" style="margin-bottom:18px;font-size:1.12em;"></div>
+        <button id="btn-sair" style="background:#e53935;color:#fff;padding:10px 24px;border:none;border-radius:5px;font-size:1.08em;cursor:pointer;">Sair</button>
+    </div>
+    <!-- Removido o formulário de Cadastro/Login de Usuário -->
+</body>
+</html> 

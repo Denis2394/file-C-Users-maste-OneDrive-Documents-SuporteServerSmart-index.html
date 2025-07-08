@@ -1,0 +1,288 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+}
+.sidebar {
+    width: 250px;
+    background: #222;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    min-height: 100vh;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+}
+.logo-area {
+    display: flex;
+    align-items: center;
+    padding: 24px 20px 16px 20px;
+    border-bottom: 1px solid #333;
+}
+.logo {
+    width: 38px;
+    height: 38px;
+    margin-right: 12px;
+}
+.admin-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+.menu-item {
+    padding: 15px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1.05em;
+    border-left: 4px solid transparent;
+    transition: background 0.2s, border-color 0.2s;
+    position: relative;
+}
+.menu-item i {
+    margin-right: 12px;
+    font-size: 1.1em;
+}
+.menu-item.active, .menu-item:hover {
+    background: #333;
+    border-left: 4px solid #00bcd4;
+}
+.menu-item.has-submenu:after {
+    content: '\f0d7';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 24px;
+    font-size: 0.9em;
+}
+.submenu {
+    display: none;
+    background: #181818;
+    padding-left: 0;
+    margin: 0;
+    border-left: 2px solid #00bcd4;
+}
+.menu-item.has-submenu.open > .submenu {
+    display: block;
+}
+.submenu-item {
+    padding: 12px 36px;
+    color: #ccc;
+    font-size: 0.98em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.submenu-item.active, .submenu-item:hover {
+    background: #222;
+    color: #fff;
+}
+.main-content {
+    flex: 1;
+    padding: 40px 32px 32px 32px;
+    background: #f7f7f7;
+}
+.section {
+    display: none;
+}
+.section.active {
+    display: block;
+}
+.dashboard-widgets {
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+.widget {
+    flex: 1 1 250px;
+    padding: 28px 24px;
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    min-width: 220px;
+}
+.widget-blue {
+    background: #455a64;
+}
+.widget-cyan {
+    background: #00bcd4;
+}
+.widget-yellow {
+    background: #ffb300;
+    color: #222;
+}
+.widget-green {
+    background: #43a047;
+    color: #fff;
+}
+.widget-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.widget-desc {
+    font-size: 1em;
+    opacity: 0.85;
+}
+.widget-value {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 8px;
+}
+/* Botões de ação nas tabelas */
+button.btn-editar, button.btn-editar-gsm, button.btn-editar-revenda {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-right: 4px;
+    cursor: pointer;
+    font-size: 0.98em;
+    transition: background 0.2s;
+}
+button.btn-editar:hover, button.btn-editar-gsm:hover, button.btn-editar-revenda:hover {
+    background: #1565c0;
+}
+button.btn-excluir, button.btn-excluir-gsm, button.btn-excluir-revenda {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-right: 4px;
+    cursor: pointer;
+    font-size: 0.98em;
+    transition: background 0.2s;
+}
+button.btn-excluir:hover, button.btn-excluir-gsm:hover, button.btn-excluir-revenda:hover {
+    background: #b71c1c;
+}
+button.btn-salvar, button.btn-salvar-gsm, button.btn-salvar-revenda {
+    background: #43a047;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-right: 4px;
+    cursor: pointer;
+    font-size: 0.98em;
+    transition: background 0.2s;
+}
+button.btn-salvar:hover, button.btn-salvar-gsm:hover, button.btn-salvar-revenda:hover {
+    background: #2e7d32;
+}
+button.btn-cancelar, button.btn-cancelar-gsm, button.btn-cancelar-revenda {
+    background: #757575;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-right: 4px;
+    cursor: pointer;
+    font-size: 0.98em;
+    transition: background 0.2s;
+}
+button.btn-cancelar:hover, button.btn-cancelar-gsm:hover, button.btn-cancelar-revenda:hover {
+    background: #424242;
+}
+/* Formulários bonitos para Servidor, Remoto e Revenda */
+#form-servidor, #form-servico-remoto, #form-revenda {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 32px 28px 24px 28px;
+    max-width: 420px;
+    margin-bottom: 32px;
+    margin-top: 12px;
+}
+#form-servidor label, #form-servico-remoto label, #form-revenda label {
+    display: block;
+    font-weight: bold;
+    color: #1976d2;
+    margin-bottom: 6px;
+    margin-top: 18px;
+    letter-spacing: 0.5px;
+}
+#form-servidor input[type="text"],
+#form-servidor input[type="number"],
+#form-servico-remoto input[type="text"],
+#form-servico-remoto input[type="number"],
+#form-revenda input[type="text"],
+#form-revenda input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #b0bec5;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-bottom: 6px;
+    transition: border-color 0.2s;
+    background: #f7fafd;
+}
+#form-servidor input:focus,
+#form-servico-remoto input:focus,
+#form-revenda input:focus {
+    border-color: #1976d2;
+    outline: none;
+    background: #e3f2fd;
+}
+#form-servidor button[type="submit"],
+#form-servico-remoto button[type="submit"],
+#form-revenda button[type="submit"] {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 5px;
+    font-size: 1.08em;
+    font-weight: bold;
+    margin-top: 18px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(25,118,210,0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+#form-servidor button[type="submit"]:hover,
+#form-servico-remoto button[type="submit"]:hover,
+#form-revenda button[type="submit"]:hover {
+    background: #1565c0;
+    box-shadow: 0 4px 12px rgba(25,118,210,0.13);
+}
+@media (max-width: 900px) {
+    .dashboard-widgets {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .main-content {
+        padding: 24px 8px 8px 8px;
+    }
+    .sidebar {
+        width: 100px;
+        min-width: 80px;
+    }
+    .logo-area {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 8px 8px 8px;
+    }
+    .logo {
+        margin: 0 0 8px 0;
+    }
+    .admin-title {
+        font-size: 1em;
+    }
+    .menu-item, .submenu-item {
+        font-size: 0.95em;
+        padding: 10px 10px;
+    }
+} 

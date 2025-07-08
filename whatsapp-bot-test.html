@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Bot WhatsApp - Server Smart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .chat-area {
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 70%;
+        }
+        .bot-message {
+            background: #25D366;
+            color: white;
+            margin-right: auto;
+        }
+        .user-message {
+            background: #1e90ff;
+            color: white;
+            margin-left: auto;
+        }
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #128C7E;
+        }
+        .status {
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #25D366;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Teste Bot WhatsApp - Server Smart</h1>
+        
+        <div class="status">
+            <strong>Status:</strong> Bot ativo e pronto para atendimento
+        </div>
+
+        <div class="chat-area" id="chatArea">
+            <div class="message bot-message">
+                🤖 Olá! Sou o assistente virtual do Server Smart. Como posso ajudá-lo hoje?
+            </div>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="messageInput" placeholder="Digite sua mensagem..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <h3>📋 Comandos de Teste:</h3>
+            <button onclick="testCommand('oi')">Oi</button>
+            <button onclick="testCommand('1')">Formulário Suporte</button>
+            <button onclick="testCommand('2')">Fazer Pedido</button>
+            <button onclick="testCommand('3')">Reportar Problema</button>
+            <button onclick="testCommand('4')">Falar Humano</button>
+        </div>
+    </div>
+
+    <script src="whatsapp-bot.js"></script>
+    <script>
+        let currentNumber = '5541996378029';
+        let currentState = 'menu_principal';
+
+        function addMessage(message, isBot = true) {
+            const chatArea = document.getElementById('chatArea');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isBot ? 'bot-message' : 'user-message'}`;
+            messageDiv.innerHTML = message.replace(/\n/g, '<br>');
+            chatArea.appendChild(messageDiv);
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage(message, false);
+                input.value = '';
+                
+                // Simular processamento do bot
+                setTimeout(() => {
+                    processBotResponse(message);
+                }, 1000);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function testCommand(command) {
+            document.getElementById('messageInput').value = command;
+            sendMessage();
+        }
+
+        function processBotResponse(message) {
+            const response = WhatsAppBot.prototype.processarMensagem(currentNumber, message);
+            
+            // Simular respostas baseadas no comando
+            if (message.toLowerCase() === 'oi' || message.toLowerCase() === 'olá') {
+                addMessage(`🤖 *SUPORTE SERVER SMART*
+
+Olá! Sou o assistente virtual do Server Smart. Como posso ajudá-lo hoje?
+
+*Escolha uma opção:*
+
+1️⃣ *Formulário de Suporte*
+   - Solicitar suporte técnico
+   - Reportar problemas
+   - Dúvidas sobre serviços
+
+2️⃣ *Fazer Pedido*
+   - Solicitar serviços GSM
+   - Pedir remotos
+   - Alugar ferramentas
+
+3️⃣ *Reportar Problema*
+   - Problemas com serviços
+   - Bugs ou erros
+   - Reclamações
+
+4️⃣ *Falar com Humano*
+   - Atendimento personalizado
+   - Emergências
+
+*Digite o número da opção desejada*`);
+            } else if (message === '1') {
+                addMessage(`📋 *FORMULÁRIO DE SUPORTE*
+
+Vou te ajudar a preencher o formulário de suporte. Responda cada pergunta:
+
+*1. Qual é o seu nome completo?*`);
+            } else if (message === '2') {
+                addMessage(`🛒 *FORMULÁRIO DE PEDIDO*
+
+Vou te ajudar a fazer seu pedido. Responda cada pergunta:
+
+*1. Qual é o seu nome completo?*`);
+            } else if (message === '3') {
+                addMessage(`⚠️ *REPORTAR PROBLEMA*
+
+Vou te ajudar a reportar o problema. Responda cada pergunta:
+
+*1. Qual é o seu nome completo?*`);
+            } else if (message === '4') {
+                addMessage(`👨‍💼 *ATENDIMENTO HUMANO*
+
+Você será direcionado para um atendente humano em breve.
+
+*Enquanto isso, você pode:*
+- Descrever brevemente seu problema
+- Informar se é urgente
+- Deixar seu horário preferido
+
+*Um atendente entrará em contato em até 10 minutos.*`);
+            } else {
+                addMessage(`🤖 Desculpe, não entendi. Digite "oi" para ver o menu de opções.`);
+            }
+        }
+
+        // Inicializar
+        console.log('Bot de teste iniciado');
+    </script>
+</body>
+</html> 

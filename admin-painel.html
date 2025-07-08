@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Avançado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --azul-escuro: #0d1b2a;
+            --azul: #1976d2;
+            --azul-claro: #64b5f6;
+            --azul-gradiente: linear-gradient(120deg, #1976d2 0%, #64b5f6 100%);
+            --branco: #fff;
+            --cinza: #f5f7fa;
+            --amarelo: #ffd54f;
+            --cinza-menu: #e3eafc;
+            --cinza-texto: #5c6b7a;
+            --glass: rgba(255,255,255,0.13);
+            --glass-border: rgba(255,255,255,0.18);
+        }
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            margin: 0;
+            font-family: 'Segoe UI', 'Montserrat', Arial, sans-serif;
+            min-height: 100vh;
+        }
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background: var(--glass);
+            padding: 0 0 24px 0;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 24px #1976d220;
+            border-right: 1.5px solid var(--glass-border);
+            backdrop-filter: blur(16px);
+            transition: width 0.3s;
+            position: relative;
+        }
+        .sidebar.collapsed {
+            width: 70px;
+        }
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 32px 24px 18px 24px;
+            border-bottom: 1px solid #dbeafe33;
+            position: relative;
+        }
+        .sidebar-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--azul-gradiente);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            color: var(--branco);
+            box-shadow: 0 2px 8px #1976d240;
+        }
+        .sidebar-admin {
+            font-weight: bold;
+            color: var(--azul-escuro);
+            font-size: 1.25rem;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+        }
+        .sidebar.collapsed .sidebar-admin {
+            opacity: 0;
+        }
+        .sidebar-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--azul-gradiente);
+            color: var(--branco);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #1976d240;
+            transition: background 0.2s;
+        }
+        .sidebar-toggle:hover {
+            background: var(--azul);
+        }
+        .sidebar-menu {
+            margin-top: 18px;
+        }
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar-menu li {
+            padding: 13px 28px;
+            color: #fff;
+            font-size: 1.08rem;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+            transition: background 0.18s, border 0.18s, color 0.18s;
+            border-radius: 0 18px 18px 0;
+            margin-bottom: 2px;
+            position: relative;
+        }
+        .sidebar-menu li.active, .sidebar-menu li:hover {
+            background: var(--azul-gradiente);
+            color: #fff;
+            border-left: 4px solid var(--azul);
+            box-shadow: 0 2px 8px #1976d220;
+        }
+        .sidebar-menu .icon {
+            font-size: 1.25em;
+            width: 24px;
+            text-align: center;
+        }
+        .main-content {
+            flex: 1;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .main-header {
+            width: 100%;
+            max-width: 100vw;
+            background: var(--glass);
+            border-bottom: 1.5px solid var(--glass-border);
+            box-shadow: 0 2px 12px #1976d220;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 22px 38px 22px 38px;
+            backdrop-filter: blur(12px);
+        }
+        .main-header h2 {
+            color: var(--azul-escuro);
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .main-header .icon {
+            font-size: 1.7rem;
+            color: var(--azul);
+        }
+        .cards-admin {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            margin-top: 38px;
+        }
+        .card-admin {
+            border-radius: 18px;
+            box-shadow: 0 6px 32px #1976d230, 0 1.5px 8px #fff2;
+            padding: 32px 38px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.18rem;
+            background: var(--glass);
+            border: 1.5px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.7s;
+        }
+        .card-admin:before {
+            content: '';
+            position: absolute;
+            top: -40px; left: -40px;
+            width: 120px; height: 120px;
+            background: var(--azul-gradiente);
+            opacity: 0.13;
+            border-radius: 50%;
+            filter: blur(2px);
+            z-index: 0;
+        }
+        .card-admin > * { position: relative; z-index: 1; }
+        .card-bemvindo {
+            background: var(--azul-gradiente);
+            color: var(--branco);
+            box-shadow: 0 8px 32px #1976d240;
+        }
+        .card-azul {
+            background: linear-gradient(90deg, #2196f3 0%, #64b5f6 100%);
+            color: var(--branco);
+        }
+        .card-amarelo {
+            background: linear-gradient(90deg, #ffd54f 0%, #fffde4 100%);
+            color: #7c5b00;
+        }
+        .card-title {
+            font-weight: bold;
+            font-size: 1.22rem;
+            letter-spacing: 0.5px;
+        }
+        .card-desc {
+            font-size: 1.08rem;
+            opacity: 0.93;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 900px) {
+            .main-header { padding: 18px 2vw; }
+            .main-content { padding: 0; }
+            .cards-admin { padding: 0; }
+        }
+        @media (max-width: 700px) {
+            .admin-layout { flex-direction: column; }
+            .sidebar { width: 100%; flex-direction: row; overflow-x: auto; }
+            .sidebar-header { padding: 18px 12px; }
+            .main-header { padding: 12px 2vw; }
+            .main-content { padding: 0; }
+            .cards-admin { gap: 12px; margin-top: 18px; }
+            .card-admin { padding: 18px 10px; font-size: 1rem; }
+        }
+        .has-submenu {
+            position: relative;
+        }
+        .has-submenu .submenu-arrow {
+            margin-left: auto;
+            transition: transform 0.2s;
+        }
+        .has-submenu.open .submenu-arrow {
+            transform: rotate(180deg);
+        }
+        .submenu {
+            display: none;
+            flex-direction: column;
+            background: rgba(25, 118, 210, 0.13);
+            border-radius: 0 0 14px 14px;
+            box-shadow: 0 4px 18px #1976d220;
+            margin: 0;
+            padding: 0 0 6px 38px;
+            position: static;
+        }
+        .has-submenu.open .submenu {
+            display: flex;
+        }
+        .submenu li {
+            color: #fff;
+            font-size: 1.01rem;
+            padding: 10px 0 10px 0;
+            border-left: 2px solid #64b5f6;
+            margin-bottom: 2px;
+            background: none;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s;
+            border-radius: 0 10px 10px 0;
+        }
+        .submenu li:hover {
+            background: var(--azul-gradiente);
+            color: #fff;
+        }
+        #servicos-gsm-menu .submenu-arrow { margin-left: auto; transition: transform 0.2s; }
+        #servicos-gsm-menu.open .submenu-arrow { transform: rotate(180deg); }
+        #servicos-gsm-menu .submenu { display: none; flex-direction: column; background: rgba(25, 118, 210, 0.13); border-radius: 0 0 14px 14px; box-shadow: 0 4px 18px #1976d220; margin: 0; padding: 0 0 6px 38px; position: static; }
+        #servicos-gsm-menu.open .submenu { display: flex; }
+        #servicos-gsm-menu .submenu li { color: #fff; font-size: 1.01rem; padding: 10px 0 10px 0; border-left: 2px solid #64b5f6; margin-bottom: 2px; background: none; cursor: pointer; transition: background 0.18s, color 0.18s; border-radius: 0 10px 10px 0; }
+        #servicos-gsm-menu .submenu li:hover { background: var(--azul-gradiente); color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Menu lateral -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo"><i class="fa-solid fa-shield-halved"></i></div>
+                <span class="sidebar-admin">Admin</span>
+                <button class="sidebar-toggle" id="toggleSidebar" title="Expandir/recolher menu"><i class="fa-solid fa-bars"></i></button>
+            </div>
+            <nav class="sidebar-menu">
+                <ul>
+                    <li class="active"><span class="icon"><i class="fa-solid fa-house"></i></span>Página inicial</li>
+                    <li><span class="icon"><i class="fa-solid fa-mobile-screen-button"></i></span>Adicionar imei</li>
+                    <li class="has-submenu" id="servidor-menu">
+                        <span class="icon"><i class="fa-solid fa-server"></i></span>Adicionar servidor
+                        <span class="submenu-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                        <ul class="submenu">
+                            <li id="menu-add-servidor"><span class="icon"><i class="fa-solid fa-plus"></i></span>Adicionar servidor</li>
+                            <li id="menu-add-ferramenta"><span class="icon"><i class="fa-solid fa-toolbox"></i></span>Adicionar ferramenta</li>
+                            <li id="menu-add-servico-gsm"><span class="icon"><i class="fa-solid fa-sim-card"></i></span>Adicionar serviço GSM</li>
+                        </ul>
+                    </li>
+                    <li><span class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></span>Adicionar remotos</li>
+                    <li><span class="icon"><i class="fa-solid fa-sim-card"></i></span>Serviços gsm</li>
+                    <li class="has-submenu" id="api-menu">
+                        <span class="icon"><i class="fa-solid fa-cloud-arrow-up"></i></span>Atualizar api
+                        <span class="submenu-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                        <ul class="submenu">
+                            <li id="menu-atualizar-api"><span class="icon"><i class="fa-solid fa-sync"></i></span>Atualizar API</li>
+                        </ul>
+                    </li>
+                    <li><span class="icon"><i class="fa-solid fa-handshake"></i></span>Revendas</li>
+                    <li class="has-submenu" id="ferramenta-box-menu">
+                        <span class="icon"><i class="fa-solid fa-toolbox"></i></span>Aluguel de Ferramenta Box
+                        <span class="submenu-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                        <ul class="submenu">
+                            <li><span class="icon"><i class="fa-solid fa-plus"></i></span>Cadastrar ferramenta</li>
+                            <li><span class="icon"><i class="fa-solid fa-list"></i></span>Lista de ferramentas</li>
+                            <li><span class="icon"><i class="fa-solid fa-file-signature"></i></span>Pedidos de aluguel</li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu" id="servicos-gsm-menu">
+                        <span class="icon"><i class="fa-solid fa-sim-card"></i></span>Serviços GSM
+                        <span class="submenu-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                        <ul class="submenu">
+                            <li><span class="icon"><i class="fa-solid fa-plus"></i></span>Cadastrar serviço GSM</li>
+                            <li><span class="icon"><i class="fa-solid fa-list"></i></span>Lista de serviços GSM</li>
+                            <li><span class="icon"><i class="fa-solid fa-file-signature"></i></span>Pedidos de serviço GSM</li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu" id="aviso-menu">
+                        <span class="icon"><i class="fa-solid fa-bullhorn"></i></span>Aviso
+                        <span class="submenu-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                        <ul class="submenu">
+                            <li id="menu-aviso"><span class="icon"><i class="fa-solid fa-list"></i></span>Gerenciar avisos</li>
+                        </ul>
+                    </li>
+                    <li><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>Sair</li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- Conteúdo principal -->
+        <main class="main-content">
+            <div class="main-header">
+                <span class="icon"><i class="fa-solid fa-house"></i></span>
+                <h2>Página inicial</h2>
+            </div>
+            <div class="cards-admin">
+                <div class="card-admin card-bemvindo">
+                    <div class="card-title">Bem-vindo(a) à área de gerenciamento</div>
+                    <div class="card-desc">Painel administrativo (GSM SUPORTE BRASIL).</div>
+                </div>
+                <div class="card-admin card-azul">
+                    <div class="card-title">Valor Total de Recargas dos Usuários</div>
+                    <div class="card-desc" id="valor-recargas">R$ 0,00</div>
+                </div>
+                <div class="card-admin card-amarelo">
+                    <div class="card-title">Total de Usuários Cadastrados</div>
+                    <div class="card-desc" id="total-usuarios">0</div>
+                </div>
+            </div>
+            <div id="ferramenta-box-content" style="display:none;width:100%;max-width:900px;margin-top:38px;"></div>
+            <div id="servidor-content" style="display:none;width:100%;max-width:900px;margin-top:38px;"></div>
+            <div id="servicos-gsm-content" style="display:none;width:100%;max-width:900px;margin-top:38px;"></div>
+        </main>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar colapsável
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleSidebar');
+        toggleBtn.onclick = () => {
+            sidebar.classList.toggle('collapsed');
+        };
+        // Submenu toggle
+        const ferramentaBoxMenu = document.getElementById('ferramenta-box-menu');
+        ferramentaBoxMenu.onclick = function(e) {
+            e.stopPropagation();
+            this.classList.toggle('open');
+        };
+        document.body.onclick = function() {
+            ferramentaBoxMenu.classList.remove('open');
+            servicosGsmMenu.classList.remove('open');
+        };
+        // Atualiza os cards de resumo ao carregar o painel
+        function atualizarResumo() {
+            // Valor total de recargas
+            let valor = localStorage.getItem('valorRecargas') || '0.00';
+            document.getElementById('valor-recargas').innerText = 'R$ ' + parseFloat(valor).toFixed(2);
+            // Total de usuários cadastrados
+            let users = JSON.parse(localStorage.getItem('usuarios') || '{}');
+            document.getElementById('total-usuarios').innerText = Object.keys(users).length;
+        }
+        window.onload = atualizarResumo;
+
+        // Funções para navegação do submenu Ferramenta Box
+        const submenuFerramenta = document.querySelectorAll('#ferramenta-box-menu .submenu li');
+        const ferramentaBoxContent = document.getElementById('ferramenta-box-content');
+        const cardsAdmin = document.querySelector('.cards-admin');
+
+        function showFerramentaBoxContent(tipo) {
+            cardsAdmin.style.display = 'none';
+            ferramentaBoxContent.style.display = 'block';
+            if (tipo === 'cadastrar') {
+                ferramentaBoxContent.innerHTML = `
+                    <div class="card-admin card-bemvindo" style="margin-bottom:22px;">
+                        <div class="card-title">Cadastrar nova ferramenta</div>
+                    </div>
+                    <form id='form-ferramenta' class='card-admin' style='flex-direction:column;gap:18px;'>
+                        <input type='text' id='nome-ferramenta' placeholder='Nome da ferramenta' required>
+                        <input type='text' id='desc-ferramenta' placeholder='Descrição' required>
+                        <input type='number' id='valor-ferramenta' placeholder='Valor do aluguel (R$)' min='0' step='0.01' required>
+                        <select id='status-ferramenta' required>
+                            <option value=''>Status</option>
+                            <option value='disponivel'>Disponível</option>
+                            <option value='alugada'>Alugada</option>
+                        </select>
+                        <button type='submit'>Salvar ferramenta</button>
+                    </form>
+                `;
+                document.getElementById('form-ferramenta').onsubmit = function(e) {
+                    e.preventDefault();
+                    const nome = document.getElementById('nome-ferramenta').value.trim();
+                    const desc = document.getElementById('desc-ferramenta').value.trim();
+                    const valor = parseFloat(document.getElementById('valor-ferramenta').value);
+                    const status = document.getElementById('status-ferramenta').value;
+                    if (!nome || !desc || isNaN(valor) || !status) return;
+                    let ferramentas = JSON.parse(localStorage.getItem('ferramentas') || '[]');
+                    ferramentas.push({ nome, desc, valor, status });
+                    localStorage.setItem('ferramentas', JSON.stringify(ferramentas));
+                    alert('Ferramenta cadastrada com sucesso!');
+                    showFerramentaBoxContent('lista');
+                };
+            } else if (tipo === 'lista') {
+                let ferramentas = JSON.parse(localStorage.getItem('ferramentas') || '[]');
+                let html = `<div class='card-admin card-bemvindo' style='margin-bottom:22px;'><div class='card-title'>Lista de ferramentas</div></div>`;
+                if (ferramentas.length === 0) {
+                    html += `<div class='card-admin'>Nenhuma ferramenta cadastrada.</div>`;
+                } else {
+                    html += `<table style='width:100%;background:transparent;'><thead><tr><th>Nome</th><th>Descrição</th><th>Valor (R$)</th><th>Status</th><th>Ações</th></tr></thead><tbody>`;
+                    ferramentas.forEach((f, i) => {
+                        html += `<tr>
+                            <td>${f.nome}</td>
+                            <td>${f.desc}</td>
+                            <td>R$ ${parseFloat(f.valor).toFixed(2)}</td>
+                            <td>${f.status === 'disponivel' ? 'Disponível' : 'Alugada'}</td>
+                            <td><button onclick='editarFerramenta(${i})'>Editar</button> <button onclick='excluirFerramenta(${i})'>Excluir</button></td>
+                        </tr>`;
+                    });
+                    html += `</tbody></table>`;
+                }
+                ferramentaBoxContent.innerHTML = html;
+            } else if (tipo === 'pedidos') {
+                let pedidos = JSON.parse(localStorage.getItem('pedidosAluguel') || '[]');
+                let html = `<div class='card-admin card-bemvindo' style='margin-bottom:22px;'><div class='card-title'>Pedidos de aluguel</div></div>`;
+                if (pedidos.length === 0) {
+                    html += `<div class='card-admin'>Nenhum pedido de aluguel encontrado.</div>`;
+                } else {
+                    html += `<table style='width:100%;background:transparent;'><thead><tr><th>Cliente</th><th>Ferramenta</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead><tbody>`;
+                    pedidos.forEach((p, idx) => {
+                        html += `<tr>
+                            <td>${p.cliente}</td>
+                            <td>${p.ferramenta}</td>
+                            <td>${p.data}</td>
+                            <td>${p.status}</td>
+                            <td>
+                                <button onclick='enviarAcessoPedido(${idx})'>Enviar acesso</button>
+                                ${p.codigoAcesso ? `<a href='acesso.html?codigo=${p.codigoAcesso}' target='_blank'>Ver acesso</a>` : ''}
+                                <button onclick='removerPedidoAluguel(${idx})' style='background:#e53935;color:#fff;margin-left:6px;border:none;border-radius:6px;padding:7px 14px;cursor:pointer;'>Remover</button>
+                            </td>
+                        </tr>`;
+                    });
+                    html += `</tbody></table>`;
+                }
+                ferramentaBoxContent.innerHTML = html;
+            }
+        }
+        submenuFerramenta[0].onclick = (e) => { e.stopPropagation(); showFerramentaBoxContent('cadastrar'); };
+        submenuFerramenta[1].onclick = (e) => { e.stopPropagation(); showFerramentaBoxContent('lista'); };
+        submenuFerramenta[2].onclick = (e) => { e.stopPropagation(); showFerramentaBoxContent('pedidos'); };
+        // Funções editar/excluir ferramenta
+        window.editarFerramenta = function(i) {
+            let ferramentas = JSON.parse(localStorage.getItem('ferramentas') || '[]');
+            const f = ferramentas[i];
+            ferramentaBoxContent.innerHTML = `
+                <div class='card-admin card-bemvindo' style='margin-bottom:22px;'><div class='card-title'>Editar ferramenta</div></div>
+                <form id='form-editar-ferramenta' class='card-admin' style='flex-direction:column;gap:18px;'>
+                    <input type='text' id='edit-nome-ferramenta' value='${f.nome}' required>
+                    <input type='text' id='edit-desc-ferramenta' value='${f.desc}' required>
+                    <input type='number' id='edit-valor-ferramenta' value='${f.valor}' min='0' step='0.01' required>
+                    <select id='edit-status-ferramenta' required>
+                        <option value='disponivel' ${f.status==='disponivel'?'selected':''}>Disponível</option>
+                        <option value='alugada' ${f.status==='alugada'?'selected':''}>Alugada</option>
+                    </select>
+                    <button type='submit'>Salvar alterações</button>
+                </form>
+            `;
+            document.getElementById('form-editar-ferramenta').onsubmit = function(e) {
+                e.preventDefault();
+                ferramentas[i] = {
+                    nome: document.getElementById('edit-nome-ferramenta').value.trim(),
+                    desc: document.getElementById('edit-desc-ferramenta').value.trim(),
+                    valor: parseFloat(document.getElementById('edit-valor-ferramenta').value),
+                    status: document.getElementById('edit-status-ferramenta').value
+                };
+                localStorage.setItem('ferramentas', JSON.stringify(ferramentas));
+                alert('Ferramenta atualizada!');
+                showFerramentaBoxContent('lista');
+            };
+        };
+        window.excluirFerramenta = function(i) {
+            if (confirm('Tem certeza que deseja excluir esta ferramenta?')) {
+                let ferramentas = JSON.parse(localStorage.getItem('ferramentas') || '[]');
+                ferramentas.splice(i, 1);
+                localStorage.setItem('ferramentas', JSON.stringify(ferramentas));
+                showFerramentaBoxContent('lista');
+            }
+        };
+        // Voltar para dashboard ao clicar fora
+        const menuItems = document.querySelectorAll('.sidebar-menu > ul > li:not(.has-submenu)');
+        menuItems.forEach(item => {
+            if(item.id !== 'menu-aviso' && item.id !== 'aviso-menu') {
+                item.onclick = () => {
+                    if (ferramentaBoxContent) ferramentaBoxContent.style.display = 'none';
+                    if (avisoContent) avisoContent.style.display = 'none';
+                    cardsAdmin.style.display = 'flex';
+                };
+            }
+        });
+
+        // Modal de acesso
+        if (!document.getElementById('modal-acesso')) {
+            const modal = document.createElement('div');
+            modal.id = 'modal-acesso';
+            modal.style.display = 'none';
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100vw';
+            modal.style.height = '100vh';
+            modal.style.background = 'rgba(0,0,0,0.45)';
+            modal.style.zIndex = '9999';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.innerHTML = `<form id='form-acesso' style='background:#fff;padding:32px 28px 24px 28px;border-radius:18px;box-shadow:0 8px 32px #0005;max-width:400px;width:95vw;display:flex;flex-direction:column;gap:16px;position:relative;'>
+                <h3 style='color:#1e90ff;text-align:center;margin-bottom:8px;'>Enviar acesso ao cliente</h3>
+                <input type='text' id='acesso-login' placeholder='Login' required style='padding:10px;border-radius:8px;border:1px solid #e0e6ef;'>
+                <input type='text' id='acesso-senha' placeholder='Senha' required style='padding:10px;border-radius:8px;border:1px solid #e0e6ef;'>
+                <div id='acesso-link' style='display:none;text-align:center;word-break:break-all;'></div>
+                <button type='button' id='copiar-acesso' style='display:none;background:#22d3ee;color:#fff;padding:10px 24px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;'>Copiar acesso para enviar ao cliente</button>
+                <button type='button' id='whatsapp-acesso' style='display:none;background:#25D366;color:#fff;padding:10px 24px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:6px;'>Enviar pelo WhatsApp</button>
+                <div style='display:flex;gap:12px;justify-content:center;margin-top:8px;'>
+                    <button type='submit' style='background:#1e90ff;color:#fff;padding:10px 24px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;'>Salvar e gerar link</button>
+                    <button type='button' id='cancelar-acesso' style='background:#eee;color:#1e90ff;padding:10px 24px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;'>Cancelar</button>
+                </div>
+            </form>`;
+            document.body.appendChild(modal);
+        }
+        window.enviarAcessoPedido = function(idx) {
+            const pedidos = JSON.parse(localStorage.getItem('pedidosAluguel') || '[]');
+            const pedido = pedidos[idx];
+            document.getElementById('modal-acesso').style.display = 'flex';
+            document.getElementById('acesso-login').value = pedido.loginAcesso || '';
+            document.getElementById('acesso-senha').value = pedido.senhaAcesso || '';
+            document.getElementById('acesso-link').style.display = 'none';
+            document.getElementById('copiar-acesso').style.display = 'none'; // Hide copy button initially
+            document.getElementById('whatsapp-acesso').style.display = pedido.whatsapp ? 'block' : 'none'; // Hide WhatsApp button initially
+            document.getElementById('form-acesso').onsubmit = function(e) {
+                e.preventDefault();
+                const login = document.getElementById('acesso-login').value.trim();
+                const senha = document.getElementById('acesso-senha').value.trim();
+                // Gerar código único
+                let codigo = pedido.codigoAcesso || Math.random().toString(36).substr(2, 10) + Date.now();
+                pedidos[idx].loginAcesso = login;
+                pedidos[idx].senhaAcesso = senha;
+                pedidos[idx].codigoAcesso = codigo;
+                localStorage.setItem('pedidosAluguel', JSON.stringify(pedidos));
+                document.getElementById('acesso-link').style.display = 'none';
+                document.getElementById('copiar-acesso').style.display = 'block';
+                document.getElementById('copiar-acesso').onclick = function() {
+                    const texto = `Login: ${login}\nSenha: ${senha}\nLink: ${window.location.origin}/acesso.html?codigo=${codigo}`;
+                    navigator.clipboard.writeText(texto).then(() => {
+                        document.getElementById('copiar-acesso').innerText = 'Copiado!';
+                        setTimeout(()=>{document.getElementById('copiar-acesso').innerText = 'Copiar acesso para enviar ao cliente';}, 2000);
+                    });
+                };
+                document.getElementById('whatsapp-acesso').onclick = function() {
+                    const texto = `Olá!\nSeu acesso está pronto:\nLogin: ${login}\nSenha: ${senha}\nLink: ${window.location.origin}/acesso.html?codigo=${codigo}`;
+                    const numero = pedido.whatsapp.replace(/\D/g, '');
+                    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(texto)}`,'_blank');
+                };
+            };
+            document.getElementById('cancelar-acesso').onclick = function() {
+                document.getElementById('modal-acesso').style.display = 'none';
+            };
+        };
+        document.body.addEventListener('click', function(e) {
+            if (e.target.id === 'modal-acesso') {
+                document.getElementById('modal-acesso').style.display = 'none';
+            }
+        });
+        window.removerPedidoAluguel = function(idx) {
+            if (confirm('Tem certeza que deseja remover este pedido de aluguel?')) {
+                let pedidos = JSON.parse(localStorage.getItem('pedidosAluguel') || '[]');
+                pedidos.splice(idx, 1);
+                localStorage.setItem('pedidosAluguel', JSON.stringify(pedidos));
+                showFerramentaBoxContent('pedidos');
+            }
+        };
+
+        // Funções para navegação do submenu Serviços GSM
+        // Inicialização segura do submenu Serviços GSM
+        const servicosGsmMenu = document.getElementById('servicos-gsm-menu');
+        if (servicosGsmMenu) {
+            servicosGsmMenu.onclick = function(e) {
+                e.stopPropagation();
+                this.classList.toggle('open');
+            };
+            const submenuGsm = servicosGsmMenu.querySelectorAll('.submenu li');
+            const servicosGsmContent = document.getElementById('servicos-gsm-content');
+            function showServicosGsmContent(tipo) {
+                document.querySelector('.cards-admin').style.display = 'none';
+                if (document.getElementById('ferramenta-box-content')) document.getElementById('ferramenta-box-content').style.display = 'none';
+                if (document.getElementById('servidor-content')) document.getElementById('servidor-content').style.display = 'none';
+                servicosGsmContent.style.display = 'block';
+                if (tipo === 'cadastrar') {
+                    servicosGsmContent.innerHTML = `
+                        <div class="card-admin card-bemvindo" style="margin-bottom:22px;">
+                            <div class="card-title">Cadastrar novo serviço GSM</div>
+                        </div>
+                        <form id='form-servico-gsm' class='card-admin' style='flex-direction:column;gap:18px;'>
+                            <input type='text' id='nome-servico-gsm' placeholder='Nome do serviço' required>
+                            <input type='text' id='desc-servico-gsm' placeholder='Descrição' required>
+                            <input type='number' id='valor-servico-gsm' placeholder='Valor (R$)' min='0' step='0.01' required>
+                            <select id='status-servico-gsm' required>
+                                <option value=''>Status</option>
+                                <option value='ativo'>Ativo</option>
+                                <option value='inativo'>Inativo</option>
+                            </select>
+                            <button type='submit'>Salvar serviço</button>
+                        </form>
+                    `;
+                    document.getElementById('form-servico-gsm').onsubmit = function(e) {
+                        e.preventDefault();
+                        const nome = document.getElementById('nome-servico-gsm').value.trim();
+                        const desc = document.getElementById('desc-servico-gsm').value.trim();
+                        const valor = parseFloat(document.getElementById('valor-servico-gsm').value);
+                        const status = document.getElementById('status-servico-gsm').value;
+                        if (!nome || !desc || isNaN(valor) || !status) return;
+                        let servicos = JSON.parse(localStorage.getItem('servicosGSM') || '[]');
+                        servicos.push({ nome, desc, valor, status });
+                        localStorage.setItem('servicosGSM', JSON.stringify(servicos));
+                        alert('Serviço GSM cadastrado com sucesso!');
+                        showServicosGsmContent('lista');
+                    };
+                } else if (tipo === 'lista') {
+                    let servicos = JSON.parse(localStorage.getItem('servicosGSM') || '[]');
+                    let html = `<div class='card-admin card-bemvindo' style='margin-bottom:22px;'><div class='card-title'>Lista de serviços GSM</div></div>`;
+                    if (servicos.length === 0) {
+                        html += `<div class='card-admin'>Nenhum serviço GSM cadastrado.</div>`;
+                    } else {
+                        html += `<table style='width:100%;background:transparent;'><thead><tr><th>Nome</th><th>Descrição</th><th>Valor (R$)</th><th>Status</th><th>Ações</th></tr></thead><tbody>`;
+                        servicos.forEach((s, i) => {
+                            html += `<tr>
+                                <td>${s.nome}</td>
+                                <td>${s.desc}</td>
+                                <td>R$ ${parseFloat(s.valor).toFixed(2)}</td>
+                                <td>${s.status === 'ativo' ? 'Ativo' : 'Inativo'}</td>
+                                <td><button onclick='editarServicoGSM(${i})'>Editar</button> <button onclick='excluirServicoGSM(${i})'>Excluir</button></td>
+                            </tr>`;
+                        });
+                        html += `</tbody></table>`;
+                    }
+                    servicosGsmContent.innerHTML = html;
+                } else if (tipo === 'pedidos') {
+                    let pedidos = JSON.parse(localStorage.getItem('pedidosServicosGSM') || '[]');
+                    let html = `<div class='card-admin card-bemvindo' style='margin-bottom:22px;'><div class='card-title'>Pedidos de serviço GSM</div></div>`;
+                    if (pedidos.length === 0) {
+                        html += `<div class='card-admin'>Nenhum pedido de serviço GSM encontrado.</div>`;
+                    } else {
+                        html += `<table style='width:100%;background:transparent;'><thead><tr><th>Cliente</th><th>Serviço</th><th>Data</th><th>Status</th></tr></thead><tbody>`;
+                        pedidos.forEach((p) => {
+                            html += `<tr>
+                                <td>${p.cliente}</td>
+                                <td>${p.servico}</td>
+                                <td>${p.data}</td>
+                                <td>${p.status}</td>
+                            </tr>`;
+                        });
+                        html += `</tbody></table>`;
+                    }
+                    servicosGsmContent.innerHTML = html;
+                }
+            }
+            submenuGsm[0].onclick = (e) => { e.stopPropagation(); showServicosGsmContent('cadastrar'); };
+            submenuGsm[1].onclick = (e) => { e.stopPropagation(); showServicosGsmContent('lista'); };
+            submenuGsm[2].onclick = (e) => { e.stopPropagation(); showServicosGsmContent('pedidos'); };
+        }
+        // Funções editar/excluir serviço GSM
+        window.editarServicoGSM = function(i) {
+            let servicos = JSON.parse(localStorage.getItem('servicosGSM') || '[]');
+            const s = servicos[i];
+            servicosGsmContent.innerHTML = `
+                <div class='card-admin card-bemvindo' style='margin-bottom:22px;'><div class='card-title'>Editar serviço GSM</div></div>
+                <form id='form-editar-servico-gsm' class='card-admin' style='flex-direction:column;gap:18px;'>
+                    <input type='text' id='edit-nome-servico-gsm' value='${s.nome}' required>
+                    <input type='text' id='edit-desc-servico-gsm' value='${s.desc}' required>
+                    <input type='number' id='edit-valor-servico-gsm' value='${s.valor}' min='0' step='0.01' required>
+                    <select id='edit-status-servico-gsm' required>
+                        <option value='ativo' ${s.status==='ativo'?'selected':''}>Ativo</option>
+                        <option value='inativo' ${s.status==='inativo'?'selected':''}>Inativo</option>
+                    </select>
+                    <button type='submit'>Salvar alterações</button>
+                </form>
+            `;
+            document.getElementById('form-editar-servico-gsm').onsubmit = function(e) {
+                e.preventDefault();
+                servicos[i] = {
+                    nome: document.getElementById('edit-nome-servico-gsm').value.trim(),
+                    desc: document.getElementById('edit-desc-servico-gsm').value.trim(),
+                    valor: parseFloat(document.getElementById('edit-valor-servico-gsm').value),
+                    status: document.getElementById('edit-status-servico-gsm').value
+                };
+                localStorage.setItem('servicosGSM', JSON.stringify(servicos));
+                alert('Serviço GSM atualizado!');
+                showServicosGsmContent('lista');
+            };
+        };
+        window.excluirServicoGSM = function(i) {
+            if (confirm('Tem certeza que deseja excluir este serviço GSM?')) {
+                let servicos = JSON.parse(localStorage.getItem('servicosGSM') || '[]');
+                servicos.splice(i, 1);
+                localStorage.setItem('servicosGSM', JSON.stringify(servicos));
+                showServicosGsmContent('lista');
+            }
+        };
+        // Voltar para dashboard ao clicar fora
+        const menuItemsGsm = document.querySelectorAll('.sidebar-menu > ul > li:not(.has-submenu)');
+        menuItemsGsm.forEach(item => {
+            item.onclick = () => {
+                servicosGsmContent.style.display = 'none';
+                if (document.getElementById('ferramenta-box-content')) document.getElementById('ferramenta-box-content').style.display = 'none';
+                if (document.getElementById('servidor-content')) document.getElementById('servidor-content').style.display = 'none';
+                document.querySelector('.cards-admin').style.display = 'flex';
+            };
+        });
+
+        // Função para mostrar área de avisos
+        const avisoMenu = document.getElementById('aviso-menu');
+        const submenuAviso = avisoMenu.querySelector('.submenu');
+        avisoMenu.onclick = function(e) {
+            e.stopPropagation();
+            this.classList.toggle('open');
+        };
+        const menuAvisoGerenciar = document.getElementById('menu-aviso');
+        menuAvisoGerenciar.onclick = function(e) {
+            e.stopPropagation();
+            document.querySelectorAll('.main-content > *').forEach(el => {
+                if (el !== avisoContent) el.style.display = 'none';
+            });
+            avisoContent.style.display = 'block';
+            renderAvisosAdmin();
+        };
+        let avisoContent = document.getElementById('aviso-content');
+        if (!avisoContent) {
+            avisoContent = document.createElement('div');
+            avisoContent.id = 'aviso-content';
+            avisoContent.style.display = 'none';
+            avisoContent.style.width = '100%';
+            avisoContent.style.maxWidth = '900px';
+            avisoContent.style.marginTop = '38px';
+            document.querySelector('.main-content').appendChild(avisoContent);
+        }
+        function renderAvisosAdmin() {
+            let avisos = JSON.parse(localStorage.getItem('avisos') || '[]');
+            let html = `<div class='card-admin card-bemvindo' style='margin-bottom:22px;'><div class='card-title'>Gerenciar Avisos do Site Público</div></div>`;
+            html += `<form id='form-aviso' class='card-admin' style='flex-direction:column;gap:18px;'>
+                <textarea id='texto-aviso' placeholder='Digite o aviso para o site público' required style='min-height:60px;font-size:1.1rem;'></textarea>
+                <button type='submit'>Adicionar Aviso</button>
+            </form>`;
+            if (avisos.length > 0) {
+                html += `<div class='card-admin' style='flex-direction:column;gap:12px;'><b>Avisos cadastrados:</b>`;
+                avisos.slice().reverse().forEach((a, i) => {
+                    html += `<div style='display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,0.07);padding:10px 16px;border-radius:8px;'>
+                        <span>${a.texto}</span>
+                        <button onclick='removerAviso(${avisos.length-1-i})' style='background:#e53935;color:#fff;border:none;border-radius:6px;padding:6px 14px;cursor:pointer;'>Remover</button>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+            avisoContent.innerHTML = html;
+            document.getElementById('form-aviso').onsubmit = function(e) {
+                e.preventDefault();
+                let texto = document.getElementById('texto-aviso').value.trim();
+                if (!texto) return;
+                let avisos = JSON.parse(localStorage.getItem('avisos') || '[]');
+                avisos.push({ texto });
+                localStorage.setItem('avisos', JSON.stringify(avisos));
+                renderAvisosAdmin();
+            };
+        }
+        window.removerAviso = function(idx) {
+            let avisos = JSON.parse(localStorage.getItem('avisos') || '[]');
+            avisos.splice(idx, 1);
+            localStorage.setItem('avisos', JSON.stringify(avisos));
+            renderAvisosAdmin();
+        };
+        // Voltar para dashboard ao clicar fora
+        const menuItemsAviso = document.querySelectorAll('.sidebar-menu > ul > li:not(.has-submenu)');
+        menuItemsAviso.forEach(item => {
+            item.onclick = () => {
+                avisoContent.style.display = 'none';
+                cardsAdmin.style.display = 'flex';
+            };
+        });
+
+        // Submenu para Adicionar servidor
+        const servidorMenu = document.getElementById('servidor-menu');
+        servidorMenu.onclick = function(e) {
+            e.stopPropagation();
+            this.classList.toggle('open');
+        };
+        document.getElementById('menu-add-servidor').onclick = function(e) {
+            e.stopPropagation();
+            // Exibir área de cadastro de servidor (você pode personalizar o conteúdo abaixo)
+            document.querySelectorAll('.main-content > *').forEach(el => el.style.display = 'none');
+            let servidorContent = document.getElementById('servidor-content');
+            if (!servidorContent) {
+                servidorContent = document.createElement('div');
+                servidorContent.id = 'servidor-content';
+                servidorContent.style.width = '100%';
+                servidorContent.style.maxWidth = '900px';
+                servidorContent.style.marginTop = '38px';
+                servidorContent.innerHTML = `
+                <div class='card-admin card-bemvindo' style='margin-bottom:22px;'><div class='card-title'>Gerenciamento de Serviços</div></div>
+                <form id='form-servico-gerenciamento' class='card-admin' style='flex-direction:column;gap:18px;'>
+                    <div style='display:flex;flex-direction:column;gap:10px;'>
+                        <label for='tipo-servico'>Selecione o Serviço:</label>
+                        <select id='tipo-servico' required>
+                            <option value=''>Selecione...</option>
+                            <option value='Servidor'>Servidor</option>
+                            <option value='Ferramenta'>Ferramenta</option>
+                            <option value='GSM'>Serviço GSM</option>
+                        </select>
+                    </div>
+                    <div style='display:flex;flex-direction:column;gap:10px;'>
+                        <label for='nome-servico'>Nome do Serviço:</label>
+                        <input type='text' id='nome-servico' placeholder='Nome do serviço' required>
+                    </div>
+                    <div style='display:flex;flex-direction:column;gap:10px;'>
+                        <label for='valor-servico'>Valor da ordem:</label>
+                        <input type='number' id='valor-servico' placeholder='Valor (R$)' min='0' step='0.01' value='59.90' required>
+                    </div>
+                    <div style='display:flex;flex-direction:column;gap:10px;'>
+                        <label for='msg-telegram'>Mensagem do Telegram:</label>
+                        <input type='text' id='msg-telegram' placeholder='Mensagem do Telegram'>
+                    </div>
+                    <button type='submit'>Salvar serviço</button>
+                </form>
+                ${tabela}`;
+                document.querySelector('.main-content').appendChild(servidorContent);
+            }
+            servidorContent.style.display = 'block';
+            document.getElementById('form-servico-gerenciamento').onsubmit = function(e) {
+                e.preventDefault();
+                let tabela = `<div class='card-admin card-bemvindo' style='margin-bottom:22px;'><div class='card-title'>Serviços Cadastrados</div></div>`;
+                tabela += `<table style='width:100%;background:transparent;'><thead><tr><th>ID</th><th>Serviço</th></tr></thead><tbody>`;
+                tabela += `<tr><td>3</td><td>UnlockTool 3 Months License Activate/Renew [Auto Api]</td></tr>`;
+                tabela += `<tr><td>5</td><td>UnlockTool 12 Months License Activate/Renew [Auto Api]</td></tr>`;
+                tabela += `<tr><td>6</td><td>UnlockTool 6 Months License Activate/Renew [Auto Api]</td></tr>`;
+                tabela += `<tr><td>7</td><td>Mr Auth Tool Xiaomi Credits Existing Users [Auto Api]</td></tr>`;
+                tabela += `<tr><td>10</td><td>Borneo Schematics Hardware Tool [1 User - 1 Year] Activation & Renew Code [Ramadan Offer 3 Months Free Till 31 03.2025]✅</td></tr>`;
+                tabela += `<tr><td>11</td><td>Borneo Schematics Hardware Tool [2 User - 1 Year] Activation & Renew Code [Ramadan Offer 3 Months Free Till 31 03.2025]✅✅</td></tr>`;
+                tabela += `<tr><td>12</td><td>Borneo Schematics License Activation/Renew [1 User / 3 Months]</td></tr>`;
+                tabela += `<tr><td>13</td><td>Borneo Schematics License Activation/Renew [1 User / 6 Months]</td></tr>`;
+                tabela += `<tr><td>14</td><td>Borneo Schematics License Activation/Renew [2 User / 3 Months]</td></tr>`;
+                tabela += `<tr><td>15</td><td>Borneo Schematics License Activation/Renew [2 User / 6 Months]</td></tr>`;
+                tabela += `<tr><td>16</td><td>Xiaomi Fire Tool Credits For Existing User</td></tr>`;
+                tabela += `</tbody></table>`;
+                let servidores = JSON.parse(localStorage.getItem('servidores') || '[]');
+                const tipo = document.getElementById('tipo-servico').value;
+                const nome = document.getElementById('nome-servico').value.trim();
+                const valor = parseFloat(document.getElementById('valor-servico').value);
+                const msgTelegram = document.getElementById('msg-telegram').value.trim();
+                servidores.push({ tipo, nome, valor, msgTelegram });
+                localStorage.setItem('servidores', JSON.stringify(servidores));
+                // Salvar também na chave correta para aparecer no site público
+                if (tipo === 'Remoto' || tipo === 'Servidor') {
+                    let remotos = JSON.parse(localStorage.getItem('remotos') || '[]');
+                    remotos.push({ nome, valor, desc: msgTelegram });
+                    localStorage.setItem('remotos', JSON.stringify(remotos));
+                } else if (tipo === 'Ferramenta') {
+                    let ferramentas = JSON.parse(localStorage.getItem('ferramentas') || '[]');
+                    ferramentas.push({ nome, valor, desc: msgTelegram });
+                    localStorage.setItem('ferramentas', JSON.stringify(ferramentas));
+                } else if (tipo === 'GSM' || tipo === 'Serviço GSM') {
+                    let servicosGSM = JSON.parse(localStorage.getItem('servicosGSM') || '[]');
+                    servicosGSM.push({ nome, valor, desc: msgTelegram });
+                    localStorage.setItem('servicosGSM', JSON.stringify(servicosGSM));
+                }
+                alert('Serviço cadastrado com sucesso!');
+                servidorContent.style.display = 'none';
+                cardsAdmin.style.display = 'flex';
+            };
+        };
+        document.getElementById('menu-add-ferramenta').onclick = function(e) {
+            e.stopPropagation();
+            showFerramentaBoxContent('cadastrar');
+        };
+        document.getElementById('menu-add-servico-gsm').onclick = function(e) {
+            e.stopPropagation();
+            showServicosGsmContent('cadastrar');
+        };
+
+        // Submenu para Atualizar API
+        const apiMenu = document.getElementById('api-menu');
+        apiMenu.onclick = function(e) {
+            e.stopPropagation();
+            this.classList.toggle('open');
+        };
+        document.getElementById('menu-atualizar-api').onclick = function(e) {
+            e.stopPropagation();
+            document.querySelectorAll('.main-content > *').forEach(el => el.style.display = 'none');
+            let apiContent = document.getElementById('api-content');
+            if (!apiContent) {
+                apiContent = document.createElement('div');
+                apiContent.id = 'api-content';
+                apiContent.style.width = '100%';
+                apiContent.style.maxWidth = '900px';
+                apiContent.style.marginTop = '38px';
+                apiContent.innerHTML = `
+                <div class='card-admin card-bemvindo' style='margin-bottom:22px;'><div class='card-title'>Atualizar API</div></div>
+                <form id='form-atualizar-api' class='card-admin' style='flex-direction:column;gap:18px;'>
+                    <div style='display:flex;flex-direction:column;gap:10px;'>
+                        <label for='grupo-api'>Selecione o Grupo:</label>
+                        <select id='grupo-api' required>
+                            <option value=''>Selecione...</option>
+                            <option value='Grupo 1'>Grupo 1</option>
+                            <option value='Grupo 2'>Grupo 2</option>
+                            <option value='Grupo 3'>Grupo 3</option>
+                        </select>
+                    </div>
+                    <div style='display:flex;flex-direction:column;gap:10px;'>
+                        <label for='servico-api'>Selecione o Serviço:</label>
+                        <select id='servico-api' required>
+                            <option value=''>Selecione...</option>
+                            <option value='Serviço A'>Serviço A</option>
+                            <option value='Serviço B'>Serviço B</option>
+                            <option value='Serviço C'>Serviço C</option>
+                        </select>
+                    </div>
+                    <button type='submit'>Atualizar</button>
+                </form>`;
+                document.querySelector('.main-content').appendChild(apiContent);
+            }
+            apiContent.style.display = 'block';
+            document.getElementById('form-atualizar-api').onsubmit = function(e) {
+                e.preventDefault();
+                alert('API atualizada para o grupo e serviço selecionados!');
+                apiContent.style.display = 'none';
+                cardsAdmin.style.display = 'flex';
+            };
+        };
+    });
+    </script>
+</body>
+</html> 
